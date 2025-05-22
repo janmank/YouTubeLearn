@@ -1,0 +1,1 @@
+export { letterSpacingPercent } from "./letterSpacingPercent";
