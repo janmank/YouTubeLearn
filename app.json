@@ -20,10 +20,20 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "permissions": [],
+      "package": "com.jauz.YouTubeLearn"
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "plugins": [
+      "react-native-video"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "3080144a-6ea4-47f3-b002-7c0db3d63abd"
+      }
     }
   }
 }

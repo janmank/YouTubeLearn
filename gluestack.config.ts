@@ -10,6 +10,10 @@ export const config = {
       secondary: "#8D99AE",
       white: "#FFFFFF",
     },
+    fontSizes: {
+      ...defaultConfig.tokens.fontSizes,
+      "2xs": 10,
+    },
   },
 };
 
