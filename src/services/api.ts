@@ -1,8 +1,7 @@
 import { IYouTubeSearchResponse } from "../interfaces";
 import { mockVideos } from "../mocks";
 
-const API_KEY = "in env";
-
+const API_KEY = "AIzaSyDyQwvkO_myR4rZhck99Faeajn_G6b4QTo";
 const YOUTUBE_API = "https://www.googleapis.com/youtube/v3/search";
 
 export const fetchVideosByTopic = async (

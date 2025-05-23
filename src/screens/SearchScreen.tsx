@@ -1,22 +1,9 @@
-import {
-  Box,
-  FlatList,
-  HStack,
-  Spinner,
-  Text,
-  VStack,
-} from "@gluestack-ui/themed";
+import { FlatList, Spinner } from "@gluestack-ui/themed";
 import { ScreenWrapper } from "../components/layouts";
 import { RouteProp, useRoute } from "@react-navigation/native";
 import { useSafePadding, useYoutubeVideos } from "../hooks";
 import { VideoCard } from "../components/video";
-import {
-  EmptyList,
-  SearchInput,
-  SearchStatusMessage,
-  SortFilterModal,
-} from "../components/shared";
-import { letterSpacingPercent } from "../utils";
+import { EmptyList, SortFilterModal } from "../components/shared";
 import { useEffect, useRef, useState } from "react";
 import { IYouTubeVideoItem } from "../interfaces";
 import { SearchHeader } from "../components";
@@ -25,12 +12,12 @@ import { TabStackParamList } from "../stacks/AppStack";
 const SearchScreen = () => {
   const route = useRoute<RouteProp<TabStackParamList, "Search">>();
   const initialQuery = route.params?.query ?? "";
-  const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
+  const [showTimeoutMessage, setShowTimeoutMessage] = useState<boolean>(false);
   const allowedQueries = ["react", "react native", "javascript", "typescript"];
   const isQueryValid = allowedQueries.includes(initialQuery.toLowerCase());
 
   const [sortOrder, setSortOrder] = useState<"relevance" | "date">("relevance");
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const { videos, loading, videosNumber, loadingMore, loadMore } =
     useYoutubeVideos(initialQuery, sortOrder);

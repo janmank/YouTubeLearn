@@ -1,7 +1,7 @@
 import React from "react";
 import { VStack, Text, Box } from "@gluestack-ui/themed";
 
-interface EmptyListPlaceholderProps {
+interface IEmptyListPlaceholderProps {
   title?: string;
   message?: string;
 }
@@ -9,7 +9,7 @@ interface EmptyListPlaceholderProps {
 const EmptyList = ({
   title = "No Results",
   message = "Try adjusting your search or filter to find what you're looking for.",
-}: EmptyListPlaceholderProps) => {
+}: IEmptyListPlaceholderProps) => {
   return (
     <Box flex={1} justifyContent="center" alignItems="center" py="$10">
       <VStack alignItems="center" space="md">

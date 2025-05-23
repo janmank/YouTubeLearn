@@ -13,10 +13,10 @@ import { BackButton } from "../components/shared";
 const VideoDetailScreen = () => {
   const route = useRoute<RouteProp<RootStackParamList, "VideoDetail">>();
   const { video } = route.params;
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const background = require("./../assets/video/broadchurch.mp4");
   const videoRef = useRef<VideoRef>(null);
-  const [currentTime, setCurrentTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState<number>(0);
 
   return (
     <ScreenWrapper>

@@ -5,9 +5,6 @@ import {
   Text,
   Switch,
   HStack,
-  Input,
-  InputField,
-  Button,
   Image,
   Pressable,
 } from "@gluestack-ui/themed";
@@ -23,9 +20,9 @@ import { useDispatch } from "react-redux";
 import { guestLogout } from "../redux/actions/auth";
 
 const SettingsScreen = () => {
-  const [remindersEnabled, setRemindersEnabled] = useState(false);
-  const [hour, setHour] = useState("12");
-  const [minute, setMinute] = useState("00");
+  const [remindersEnabled, setRemindersEnabled] = useState<boolean>(false);
+  const [hour, setHour] = useState<string>("12");
+  const [minute, setMinute] = useState<string>("00");
   const navigation = useNavigation();
   const dispatch = useDispatch();
 

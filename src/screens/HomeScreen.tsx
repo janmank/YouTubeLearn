@@ -1,16 +1,40 @@
-import { Box, ScrollView } from "@gluestack-ui/themed";
+import React, { useEffect, useState } from "react";
+import { Box, ScrollView, Text } from "@gluestack-ui/themed";
 import { ScreenWrapper } from "../components/layouts";
-import { CustomButton, Divider, SearchInput } from "../components/shared";
-import { useDispatch } from "react-redux";
-import { guestLogout } from "../redux/actions/auth";
+import { Divider, SearchInput } from "../components/shared";
 import VideoSlider from "../components/video/VideoSlider";
 import { VideoTopic } from "../enums";
 import { useSafePadding } from "../hooks";
 
 const HomeScreen = () => {
-  const { paddingTop } = useSafePadding({
-    desiredPaddingTop: 40,
-  });
+  const { paddingTop } = useSafePadding({ desiredPaddingTop: 40 });
+  const [loading, setLoading] = useState<boolean>(true);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      setLoading(false);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, []);
+
+  if (loading) {
+    return (
+      <ScreenWrapper>
+        <SearchInput settings />
+        <Box
+          flex={1}
+          justifyContent="center"
+          alignItems="center"
+          paddingTop={paddingTop + 10}
+        >
+          <Text color="$primary" fontSize="$lg" fontWeight="$semibold">
+            Loading videos...
+          </Text>
+        </Box>
+      </ScreenWrapper>
+    );
+  }
 
   return (
     <ScreenWrapper>

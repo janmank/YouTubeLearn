@@ -7,8 +7,8 @@ export const useYoutubeVideos = (
   sortOrder?: "relevance" | "date"
 ) => {
   const [videos, setVideos] = useState<IYouTubeVideoItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [loadingMore, setLoadingMore] = useState(false);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [loadingMore, setLoadingMore] = useState<boolean>(false);
   const [nextPageToken, setNextPageToken] = useState<string | null>(null);
   const [videosNumber, setVideosNumber] = useState<number>(0);
 

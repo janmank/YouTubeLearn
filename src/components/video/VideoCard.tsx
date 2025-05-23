@@ -7,6 +7,7 @@ import { useFormattedDate } from "../../hooks";
 import { useNavigation } from "@react-navigation/native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../stacks/AppStack";
+import NoImage from "./../../assets/images/no-image.png";
 
 interface IVideoCard {
   video: IYouTubeVideoItem;
@@ -14,7 +15,7 @@ interface IVideoCard {
 }
 
 const VideoCard = ({ video, isBig }: IVideoCard) => {
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const background = require("./../../assets/video/broadchurch.mp4");
   const navigation = useNavigation<StackNavigationProp<RootStackParamList>>();
 
@@ -28,7 +29,11 @@ const VideoCard = ({ video, isBig }: IVideoCard) => {
         {!isPlaying ? (
           <TouchableOpacity onPress={() => setIsPlaying(true)}>
             <Image
-              source={{ uri: video.snippet.thumbnails.high.url }}
+              source={
+                video.snippet.thumbnails.high.url
+                  ? { uri: video.snippet.thumbnails.high.url }
+                  : NoImage
+              }
               style={{ width: "100%", height: "100%" }}
               resizeMode="cover"
               alt={video.snippet.title}
