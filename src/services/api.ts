@@ -9,7 +9,7 @@ export const fetchVideosByTopic = async (
   pageToken?: string
 ): Promise<IYouTubeSearchResponse> => {
   if (__DEV__) {
-    return mockVideos; // upewnij się, że masz nextPageToken i inne dane w mocku
+    return mockVideos;
   }
 
   const query = encodeURIComponent(`${topic} tutorial`);

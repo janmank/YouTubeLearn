@@ -6,14 +6,12 @@ import { useYoutubeVideos } from "../../hooks/useYoutubeVideos";
 import { letterSpacingPercent } from "../../utils";
 import { useNavigation } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { AppStackParamList } from "../../stacks/AppStack";
+import { TabStackParamList } from "../../stacks/AppStack";
 
 const VideoSlider = ({ title, apiData }: IVideoSlider) => {
   const { videos, loading } = useYoutubeVideos("react");
   const navigation =
-    useNavigation<BottomTabNavigationProp<AppStackParamList>>();
-
-  const data = videos;
+    useNavigation<BottomTabNavigationProp<TabStackParamList>>();
 
   const handleSearchPress = () => {
     navigation.navigate("Search", { query: apiData });
