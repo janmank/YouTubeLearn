@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
 import { fetchVideosByTopic } from "../services/api";
-import { IYouTubeSearchResponse, IYouTubeVideoItem } from "../interfaces";
+import { IYouTubeVideoItem } from "../interfaces";
 
-export const useYoutubeVideos = (topic: string) => {
+export const useYoutubeVideos = (
+  topic: string,
+  sortOrder?: "relevance" | "date"
+) => {
   const [videos, setVideos] = useState<IYouTubeVideoItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [loadingMore, setLoadingMore] = useState(false);
@@ -15,7 +18,8 @@ export const useYoutubeVideos = (topic: string) => {
 
     const data = await fetchVideosByTopic(
       topic,
-      isNextPage && nextPageToken ? nextPageToken : undefined
+      isNextPage && nextPageToken ? nextPageToken : undefined,
+      sortOrder
     );
 
     setVideos((prev) => (isNextPage ? [...prev, ...data.items] : data.items));
@@ -31,7 +35,7 @@ export const useYoutubeVideos = (topic: string) => {
     if (allowedTopics.includes(topic.toLowerCase())) {
       fetchVideos();
     }
-  }, [topic]);
+  }, [topic, sortOrder]);
 
   const loadMore = () => {
     if (nextPageToken && !loadingMore) {

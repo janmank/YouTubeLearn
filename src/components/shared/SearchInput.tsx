@@ -8,7 +8,7 @@ import {
   Pressable,
 } from "@gluestack-ui/themed";
 import GearIcon from "./../../assets/icons/settings-icon.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { TabStackParamList } from "../../stacks/AppStack";
@@ -28,6 +28,12 @@ const SearchInput = ({ settings, query }: ISearchInputProps) => {
       navigation.navigate("Search", { query: inputValue.trim() });
     }
   };
+
+  useEffect(() => {
+    setInputValue(query ?? "");
+  }, [query]);
+
+  console.log("query", inputValue);
 
   return (
     <HStack justifyContent="space-between" px="$6" alignItems="center">
