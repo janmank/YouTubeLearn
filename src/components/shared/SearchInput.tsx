@@ -11,7 +11,7 @@ import GearIcon from "./../../assets/icons/settings-icon.png";
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { AppStackParamList } from "../../stacks/AppStack";
+import { TabStackParamList } from "../../stacks/AppStack";
 
 interface ISearchInputProps {
   settings?: boolean;
@@ -21,7 +21,7 @@ interface ISearchInputProps {
 const SearchInput = ({ settings, query }: ISearchInputProps) => {
   const [inputValue, setInputValue] = useState<string>(query ?? "");
   const navigation =
-    useNavigation<BottomTabNavigationProp<AppStackParamList>>();
+    useNavigation<BottomTabNavigationProp<TabStackParamList>>();
 
   const handleSearchPress = () => {
     if (inputValue.trim()) {

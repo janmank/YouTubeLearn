@@ -9,6 +9,7 @@ export const config = {
       primary: "#2B2D42",
       secondary: "#8D99AE",
       white: "#FFFFFF",
+      lightGrey: "#C8C8C8",
     },
     fontSizes: {
       ...defaultConfig.tokens.fontSizes,
