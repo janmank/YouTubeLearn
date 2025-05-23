@@ -8,24 +8,31 @@ import {
 } from "@gluestack-ui/themed";
 import { ScreenWrapper } from "../components/layouts";
 import { RouteProp, useRoute } from "@react-navigation/native";
-import { AppStackParamList } from "../stacks/AppStack";
 import { useSafePadding, useYoutubeVideos } from "../hooks";
 import { VideoCard } from "../components/video";
-import { SearchInput, SearchStatusMessage } from "../components/shared";
+import {
+  SearchInput,
+  SearchStatusMessage,
+  SortFilterModal,
+} from "../components/shared";
 import { letterSpacingPercent } from "../utils";
 import { useEffect, useRef, useState } from "react";
 import { IYouTubeVideoItem } from "../interfaces";
 import { SearchHeader } from "../components";
+import { TabStackParamList } from "../stacks/AppStack";
 
 const SearchScreen = () => {
-  const route = useRoute<RouteProp<AppStackParamList, "Search">>();
+  const route = useRoute<RouteProp<TabStackParamList, "Search">>();
   const initialQuery = route.params?.query ?? "";
   const [showTimeoutMessage, setShowTimeoutMessage] = useState(false);
   const allowedQueries = ["react", "react native", "javascript", "typescript"];
   const isQueryValid = allowedQueries.includes(initialQuery.toLowerCase());
 
-  const { videos, loading, loadingMore, videosNumber, loadMore } =
-    useYoutubeVideos(initialQuery);
+  const [sortOrder, setSortOrder] = useState<"relevance" | "date">("relevance");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const { videos, loading, videosNumber, loadingMore, loadMore } =
+    useYoutubeVideos(initialQuery, sortOrder);
 
   console.log("isLoad", loading);
 
@@ -64,6 +71,8 @@ const SearchScreen = () => {
             query={initialQuery}
             videosNumber={videosNumber}
             paddingTop={paddingTop}
+            selectedSortOption={sortOrder}
+            onOpenSortModal={() => setIsModalOpen(true)}
           />
         }
         ListFooterComponent={loadingMore ? <Spinner size="large" /> : null}
@@ -75,6 +84,15 @@ const SearchScreen = () => {
         showTimeoutMessage={showTimeoutMessage}
         isQueryValid={isQueryValid}
       /> */}
+      <SortFilterModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        onSelect={(option) => {
+          setSortOrder(option as "relevance" | "date");
+          setIsModalOpen(false);
+        }}
+        selectedOption={sortOrder}
+      />
     </ScreenWrapper>
   );
 };

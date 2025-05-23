@@ -9,7 +9,7 @@ import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { TabStackParamList } from "../../stacks/AppStack";
 
 const VideoSlider = ({ title, apiData }: IVideoSlider) => {
-  const { videos, loading } = useYoutubeVideos("react");
+  const { videos, loading } = useYoutubeVideos(apiData);
   const navigation =
     useNavigation<BottomTabNavigationProp<TabStackParamList>>();
 

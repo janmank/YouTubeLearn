@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, HStack, Text, VStack } from "@gluestack-ui/themed";
+import { Box, HStack, Pressable, Text, VStack } from "@gluestack-ui/themed";
 import { letterSpacingPercent } from "../utils";
 import { SearchInput } from "../components/shared";
 
@@ -7,15 +7,22 @@ interface ISearchHeaderProps {
   query: string;
   videosNumber: number;
   paddingTop: number;
+  selectedSortOption: string;
+  onOpenSortModal: () => void;
 }
 
 const SearchHeader = ({
   query,
   videosNumber,
   paddingTop,
+  selectedSortOption,
+  onOpenSortModal,
 }: ISearchHeaderProps) => {
+  const selectedSortLabel =
+    selectedSortOption === "date" ? "Upload date: latest" : "Most popular";
+
   return (
-    <Box px="$6" pt={paddingTop + 10}>
+    <Box pt={paddingTop + 10}>
       <VStack>
         <SearchInput query={query} />
         <HStack pt="$3">
@@ -34,13 +41,15 @@ const SearchHeader = ({
           <Text fontSize="$xs" letterSpacing={letterSpacingPercent(12, 1)}>
             Sort by:
           </Text>
-          <Text
-            fontSize="$xs"
-            fontWeight="$bold"
-            letterSpacing={letterSpacingPercent(12, 1)}
-          >
-            Most Popular
-          </Text>
+          <Pressable onPress={onOpenSortModal}>
+            <Text
+              fontSize="$xs"
+              fontWeight="$bold"
+              letterSpacing={letterSpacingPercent(12, 1)}
+            >
+              {selectedSortLabel} ▾
+            </Text>
+          </Pressable>
         </HStack>
       </VStack>
     </Box>
