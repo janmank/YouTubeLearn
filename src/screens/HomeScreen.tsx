@@ -11,7 +11,6 @@ const HomeScreen = () => {
   const { paddingTop } = useSafePadding({
     desiredPaddingTop: 40,
   });
-  const dispatch = useDispatch();
 
   return (
     <ScreenWrapper>
@@ -26,11 +25,6 @@ const HomeScreen = () => {
           <Divider />
           <VideoSlider title="TypeScript" apiData={VideoTopic.TypeScript} />
         </ScrollView>
-        <CustomButton
-          title={"Log out as guest"}
-          onPress={() => dispatch(guestLogout())}
-          variant="primary"
-        />
       </Box>
     </ScreenWrapper>
   );

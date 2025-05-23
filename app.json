@@ -27,13 +27,17 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": [
-      "react-native-video"
-    ],
+    "plugins": ["react-native-video"],
     "extra": {
       "eas": {
         "projectId": "3080144a-6ea4-47f3-b002-7c0db3d63abd"
       }
+    },
+    "notification": {
+      "icon": "./assets/notification-icon.png",
+      "color": "#000000",
+      "androidMode": "default",
+      "androidCollapsedTitle": "You have new notifications"
     }
   }
 }

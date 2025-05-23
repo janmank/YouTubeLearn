@@ -1,13 +1,19 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { HomeScreen, SearchScreen, VideoDetailScreen } from "../screens";
+import {
+  HomeScreen,
+  SearchScreen,
+  SettingsScreen,
+  VideoDetailScreen,
+} from "../screens";
 import { Home, Search } from "lucide-react-native";
 import { IYouTubeVideoItem } from "../interfaces";
 
 export type RootStackParamList = {
   Tabs: undefined;
   VideoDetail: { video: IYouTubeVideoItem };
+  Settings: undefined;
 };
 
 export type TabStackParamList = {
@@ -52,6 +58,7 @@ const AppStack = () => (
   <Stack.Navigator screenOptions={{ headerShown: false }}>
     <Stack.Screen name="Tabs" component={TabNavigator} />
     <Stack.Screen name="VideoDetail" component={VideoDetailScreen} />
+    <Stack.Screen name="Settings" component={SettingsScreen} />
   </Stack.Navigator>
 );
 

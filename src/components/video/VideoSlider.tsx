@@ -18,7 +18,7 @@ const VideoSlider = ({ title, apiData }: IVideoSlider) => {
   };
 
   return (
-    <Box px="$6">
+    <Box px="$6" pb={apiData === "typescript" ? "$6" : 0}>
       <Box
         flexDirection="row"
         flex={1}
