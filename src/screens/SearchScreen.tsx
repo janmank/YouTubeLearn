@@ -11,6 +11,7 @@ import { RouteProp, useRoute } from "@react-navigation/native";
 import { useSafePadding, useYoutubeVideos } from "../hooks";
 import { VideoCard } from "../components/video";
 import {
+  EmptyList,
   SearchInput,
   SearchStatusMessage,
   SortFilterModal,
@@ -34,24 +35,19 @@ const SearchScreen = () => {
   const { videos, loading, videosNumber, loadingMore, loadMore } =
     useYoutubeVideos(initialQuery, sortOrder);
 
-  console.log("isLoad", loading);
-
   const { paddingTop } = useSafePadding({ desiredPaddingTop: 40 });
 
   useEffect(() => {
     let timeoutId: NodeJS.Timeout;
 
     if (loading && videos.length === 0) {
-      // Po 5 sekundach pokazujemy komunikat, jeśli dalej loading i brak video
       timeoutId = setTimeout(() => {
         setShowTimeoutMessage(true);
       }, 5000);
     } else {
-      // Resetujemy komunikat, gdy loading się skończy lub mamy filmy
       setShowTimeoutMessage(false);
     }
 
-    // Czyścimy timeout jeśli loading się zmieni lub komponent się unmountuje
     return () => clearTimeout(timeoutId);
   }, [loading, videos.length]);
 
@@ -77,6 +73,7 @@ const SearchScreen = () => {
         }
         ListFooterComponent={loadingMore ? <Spinner size="large" /> : null}
         contentContainerStyle={{ paddingBottom: 40 }}
+        ListEmptyComponent={() => <EmptyList />}
       />
       {/* <SearchStatusMessage
         loading={loading}
