@@ -22,7 +22,7 @@ interface INotesProps {
 
 const Notes = ({ currentTime }: INotesProps) => {
   const [notes, setNotes] = useState<Note[]>([]);
-  const [noteText, setNoteText] = useState("");
+  const [noteText, setNoteText] = useState<string>("");
 
   const handleAddNote = () => {
     if (!noteText.trim()) return;

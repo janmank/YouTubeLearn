@@ -2,19 +2,19 @@ import React from "react";
 import { Button, Text } from "@gluestack-ui/themed";
 import { letterSpacingPercent } from "../../utils";
 
-type ButtonProps = {
+interface IButtonProps {
   title: string;
   onPress: () => void;
   variant?: "primary" | "outline" | "clean";
   isDisabled?: boolean;
-};
+}
 
-const CustomButton: React.FC<ButtonProps> = ({
+const CustomButton = ({
   title,
   onPress,
   variant,
   isDisabled,
-}) => {
+}: IButtonProps) => {
   return (
     <Button
       h="$12"

@@ -14,7 +14,7 @@ import {
   Box,
 } from "@gluestack-ui/themed";
 
-interface SortFilterModalProps {
+interface ISortFilterModalProps {
   isOpen: boolean;
   onClose: () => void;
   onSelect: (option: string) => void;
@@ -31,8 +31,8 @@ const SortFilterModal = ({
   onClose,
   onSelect,
   selectedOption,
-}: SortFilterModalProps) => {
-  const [tempSelection, setTempSelection] = useState(selectedOption);
+}: ISortFilterModalProps) => {
+  const [tempSelection, setTempSelection] = useState<string>(selectedOption);
 
   useEffect(() => {
     setTempSelection(selectedOption);

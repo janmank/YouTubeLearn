@@ -2,7 +2,7 @@ import { Button, Text, HStack, Image } from "@gluestack-ui/themed";
 import ViewsIcon from "./../../assets/icons/views-icon.png";
 import LikesIcon from "./../../assets/icons/likes-icon.png";
 
-interface StatButtonProps {
+interface IStatButtonProps {
   icon: "views" | "likes";
   label: string;
   variant?: "primary" | "outline";
@@ -14,7 +14,7 @@ const StatButton = ({
   label,
   variant = "primary",
   onPress,
-}: StatButtonProps) => {
+}: IStatButtonProps) => {
   return (
     <Button
       h="$10"
