@@ -1,7 +1,7 @@
 import { FlatList } from "react-native";
 import { Box, Pressable, Spinner, Text } from "@gluestack-ui/themed";
 import VideoCard from "./VideoCard";
-import { IVideoSlider } from "../../interfaces";
+import { IVideoSlider, IYouTubeVideoItem } from "../../interfaces";
 import { useYoutubeVideos } from "../../hooks/useYoutubeVideos";
 import { letterSpacingPercent } from "../../utils";
 import { useNavigation } from "@react-navigation/native";
@@ -9,9 +9,11 @@ import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { AppStackParamList } from "../../stacks/AppStack";
 
 const VideoSlider = ({ title, apiData }: IVideoSlider) => {
-  const { videos, loading } = useYoutubeVideos(apiData);
+  const { videos, loading } = useYoutubeVideos("react");
   const navigation =
     useNavigation<BottomTabNavigationProp<AppStackParamList>>();
+
+  const data = videos;
 
   const handleSearchPress = () => {
     navigation.navigate("Search", { query: apiData });
@@ -48,8 +50,10 @@ const VideoSlider = ({ title, apiData }: IVideoSlider) => {
         <FlatList
           data={videos}
           horizontal
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <VideoCard video={item} />}
+          keyExtractor={(item) => item.id.videoId}
+          renderItem={({ item }) => (
+            <VideoCard video={item as IYouTubeVideoItem} />
+          )}
           showsHorizontalScrollIndicator={false}
         />
       ) : (

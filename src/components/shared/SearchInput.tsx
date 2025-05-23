@@ -13,8 +13,13 @@ import { useNavigation } from "@react-navigation/native";
 import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
 import { AppStackParamList } from "../../stacks/AppStack";
 
-const SearchInput = () => {
-  const [inputValue, setInputValue] = useState<string>("");
+interface ISearchInputProps {
+  settings?: boolean;
+  query?: string;
+}
+
+const SearchInput = ({ settings, query }: ISearchInputProps) => {
+  const [inputValue, setInputValue] = useState<string>(query ?? "");
   const navigation =
     useNavigation<BottomTabNavigationProp<AppStackParamList>>();
 
@@ -48,7 +53,15 @@ const SearchInput = () => {
           placeholder="Search videos"
         />
       </Input>
-      <Image source={GearIcon} alt="App Logo" width={32} height={32} mx="$6" />
+      {settings && (
+        <Image
+          source={GearIcon}
+          alt="App Logo"
+          width={32}
+          height={32}
+          mx="$6"
+        />
+      )}
     </HStack>
   );
 };
