@@ -20,6 +20,7 @@ Make sure the following are installed:
 - [Expo CLI](https://docs.expo.dev/get-started/installation/)
 - [EAS CLI](https://docs.expo.dev/eas/install/)
 - Git
+- [react-native-video] (https://github.com/TheWidlarzGroup/react-native-video)
 
 ---
 
