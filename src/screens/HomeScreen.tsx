@@ -16,15 +16,15 @@ const HomeScreen = () => {
   return (
     <ScreenWrapper>
       <Box pt={paddingTop + 10} flex={1}>
-        <SearchInput />
+        <SearchInput settings />
         <ScrollView pt="$6">
           <VideoSlider title="React" apiData={VideoTopic.React} />
           <Divider />
-          <VideoSlider title="React Native" apiData={VideoTopic.ReactNative} />
+          {/* <VideoSlider title="React Native" apiData={VideoTopic.ReactNative} />
           <Divider />
           <VideoSlider title="JavaScript" apiData={VideoTopic.JavaScript} />
           <Divider />
-          <VideoSlider title="TypeScript" apiData={VideoTopic.TypeScript} />
+          <VideoSlider title="TypeScript" apiData={VideoTopic.TypeScript} /> */}
         </ScrollView>
         <CustomButton
           title={"Log out as guest"}

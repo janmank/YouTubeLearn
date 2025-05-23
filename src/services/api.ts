@@ -1,34 +1,23 @@
-import { mockVideos } from "../mocks/mockVideos";
+import { IYouTubeSearchResponse } from "../interfaces";
+import { mockVideos } from "../mocks";
 
-const API_KEY = "In Env";
-
+const API_KEY = "in env";
 const YOUTUBE_API = "https://www.googleapis.com/youtube/v3/search";
 
-export const fetchVideosByTopic = async (topic: string) => {
+export const fetchVideosByTopic = async (
+  topic: string,
+  pageToken?: string
+): Promise<IYouTubeSearchResponse> => {
   if (__DEV__) {
-    return mockVideos;
+    return mockVideos; // upewnij się, że masz nextPageToken i inne dane w mocku
   }
 
-  const url = `${YOUTUBE_API}?part=snippet&q=${topic}&type=video&maxResults=10&key=${API_KEY}`;
+  const query = encodeURIComponent(`${topic} tutorial`);
+  const url = `${YOUTUBE_API}?part=snippet&q=${query}&type=video&maxResults=10&key=${API_KEY}${
+    pageToken ? `&pageToken=${pageToken}` : ""
+  }`;
 
   const response = await fetch(url);
   const data = await response.json();
-
-  return data.items.map((item: any) => {
-    const isoDate = item.snippet.publishTime;
-    const date = new Date(isoDate);
-
-    const formattedDate = `${date.getDate().toString().padStart(2, "0")}.${(
-      date.getMonth() + 1
-    )
-      .toString()
-      .padStart(2, "0")}.${date.getFullYear()}`;
-
-    return {
-      id: item.id.videoId,
-      title: item.snippet.title,
-      thumbnail: item.snippet.thumbnails.medium.url,
-      publishDate: formattedDate,
-    };
-  });
+  return data;
 };
