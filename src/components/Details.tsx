@@ -1,7 +1,9 @@
 import { VStack, Text, HStack, Box } from "@gluestack-ui/themed";
-import { IYouTubeVideoItem } from "../interfaces";
+import { IVideoStats, IYouTubeVideoItem } from "../interfaces";
 import { letterSpacingPercent } from "../utils";
 import { StatButton } from "./shared";
+import { useState, useEffect } from "react";
+import { fetchVideoStats } from "../services/api";
 
 interface Props {
   video: IYouTubeVideoItem;
@@ -9,6 +11,16 @@ interface Props {
 
 const Details = ({ video }: Props) => {
   const { description } = video.snippet;
+  const [videoStats, setVideoStats] = useState<IVideoStats | null>(null);
+  useEffect(() => {
+    const loadStats = async () => {
+      const id = video.id.videoId;
+      const stats = await fetchVideoStats(id);
+      setVideoStats(stats);
+    };
+
+    loadStats();
+  }, [video]);
 
   return (
     <VStack space="lg" mt="$4">
@@ -39,11 +51,17 @@ const Details = ({ video }: Props) => {
           pb="$2"
           letterSpacing={letterSpacingPercent(10, 1)}
         >
-          Statistic
+          Statistics
         </Text>
         <HStack justifyContent="space-between">
-          <StatButton icon="views" label="22 views" />
-          <StatButton icon="likes" label="23 likes" />
+          <StatButton
+            icon="views"
+            label={`${videoStats?.views ?? "–"} views`}
+          />
+          <StatButton
+            icon="likes"
+            label={`${videoStats?.likes ?? "–"} likes`}
+          />
         </HStack>
       </Box>
     </VStack>

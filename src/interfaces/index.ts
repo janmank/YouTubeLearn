@@ -45,3 +45,8 @@ export interface IVideoSlider {
   apiData: VideoTopic;
   title: string;
 }
+
+export interface IVideoStats {
+  views: number;
+  likes: number;
+}

@@ -24,7 +24,7 @@ const VideoDetailScreen = () => {
       {!isPlaying ? (
         <TouchableOpacity onPress={() => setIsPlaying(true)}>
           <Image
-            source={{ uri: video.snippet.thumbnails.default.url }}
+            source={{ uri: video.snippet.thumbnails.high.url }}
             style={{ width: "100%", height: 280 }}
             resizeMode="cover"
             alt={video.snippet.title}
